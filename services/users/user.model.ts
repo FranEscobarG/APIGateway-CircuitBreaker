@@ -36,5 +36,5 @@ User.init(
 );
 
 export const syncUserModel = async () => {
-  await User.sync({ alter: true }); // Crea la tabla si no existe
+  await User.sync({ alter: true }); 
 };

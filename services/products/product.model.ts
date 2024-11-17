@@ -35,5 +35,5 @@ Product.init(
 );
 
 export const syncProductModel = async () => {
-  await Product.sync({ alter: true }); // Crea la tabla si no existe
+  await Product.sync({ alter: true });
 };

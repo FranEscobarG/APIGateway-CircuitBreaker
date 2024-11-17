@@ -6,15 +6,12 @@ import { usersHealthCheck } from "./health";
 const app = express();
 const PORT = 3001;
 
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json());
 
-// Conectar a la base de datos
 connectToDatabase().then(syncUserModel);
 
-// Health Check
 app.get("/health", usersHealthCheck);
 
-// Crear un usuario
 app.post("/users", async (req: Request, res: Response) => {
   try {
     const { name, email, age } = req.body;
@@ -25,7 +22,6 @@ app.post("/users", async (req: Request, res: Response) => {
   }
 });
 
-// Obtener todos los usuarios
 app.get("/users", async (req: Request, res: Response) => {
   try {
     const users = await User.findAll();

@@ -6,15 +6,12 @@ import { productsHealthCheck } from "./health";
 const app = express();
 const PORT = 3002;
 
-app.use(express.json()); // Middleware para parsear JSON
+app.use(express.json());
 
-// Conectar a la base de datos
 connectToDatabase().then(syncProductModel);
 
-// Health Check
 app.get("/health", productsHealthCheck);
 
-// Crear un producto
 app.post("/products", async (req: Request, res: Response) => {
   try {
     const { name, price, stock } = req.body;
@@ -25,7 +22,6 @@ app.post("/products", async (req: Request, res: Response) => {
   }
 });
 
-// Obtener todos los productos
 app.get("/products", async (req: Request, res: Response) => {
   try {
     const products = await Product.findAll();
