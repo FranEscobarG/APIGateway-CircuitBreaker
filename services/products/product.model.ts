@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../db";
 
 export class Product extends Model {
-  public id!: number;
+  public id!: string;
   public name!: string;
   public price!: number;
   public stock!: number;
@@ -11,8 +11,8 @@ export class Product extends Model {
 Product.init(
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     name: {

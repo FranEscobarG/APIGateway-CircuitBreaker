@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../../db";
 
 export class User extends Model {
-  public id!: number;
+  public id!: string;
   public name!: string;
   public email!: string;
   public age!: number;
@@ -11,10 +11,10 @@ export class User extends Model {
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-    },
+    },    
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,5 +36,5 @@ User.init(
 );
 
 export const syncUserModel = async () => {
-  await User.sync({ alter: true }); 
+  await User.sync({ alter: true });
 };

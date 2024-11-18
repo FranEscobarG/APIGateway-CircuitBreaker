@@ -1,10 +1,18 @@
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
-export const sequelize = new Sequelize("api_gateway", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
-  logging: false,
-});
+dotenv.config();
+
+export const sequelize = new Sequelize(
+  process.env.DB_NAME as string,
+  process.env.DB_USER as string,
+  process.env.DB_PASSWORD as string,
+  {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT as any,
+    logging: false,
+  }
+);
 
 export const connectToDatabase = async () => {
   try {
